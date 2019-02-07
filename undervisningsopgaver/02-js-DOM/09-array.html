@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>js-oevelse-1</title>
+    <style>
+        body {
+            color: burlywood;
+        }
+
+        #display {
+            width: 20vw;
+
+            border: 1px solid silver;
+            margin: 7vw;
+            padding: 1vw;
+        }
+
+        /*********************/
+
+    </style>
+
+</head>
+
+<body>
+    <div id="display"></div>
+
+    <script>
+        let playlist = ["That's life", "April in Paris", "Summer Wind", "Body and Soul", "Let's Get Lost", "The Lady Is A Tramp", "Me And My Shadow", "Haupe", "On My Own", "Pennies From Heaven"];
+        playlist.forEach(sang => {
+            document.querySelector("#display").innerHTML += `${sang} <br>`;
+        })
+
+    </script>
+</body>
+
+</html>
