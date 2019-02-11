@@ -7,18 +7,24 @@
     <title>json-øvelse</title>
 
     <style>
+        h1 {
+            text-align: center;
+            font-family: arial;
+        }
+
         .person {
             height: 40vw;
             width: 30vw;
-            border: 2px solid green;
+            border: 2px solid rgba(10, 9, 9, 0);
             padding: 10px;
-            margin: 10px;
-            background: rgba(202, 244, 226, 0.6);
+            margin: 7px;
+            background: rgba(23, 35, 132, 0.1);
 
         }
 
         .menu {
             text-align: center;
+
         }
 
 
@@ -37,14 +43,13 @@
             height: 20vw;
 
         }
-
     </style>
 
 
 </head>
 
 <body>
-
+    <h1>Alle</h1>
     <div class="menu">
         <button class="filter valgt" data-hold="alle">Alle</button>
         <button class="filter" data-hold="a">Hold A</button>
@@ -98,13 +103,13 @@
 
             function filtrering() {
                 filter = this.getAttribute("data-hold");
+                document.querySelector("h1").textContent = this.textContent;
                 visPersoner();
             }
 
             getJson();
 
         }
-
     </script>
 </body>
 
