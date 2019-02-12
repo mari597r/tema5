@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json-øvelse</title>
+
+    <style>
+
+        #singleview{
+            box-sizing: border-box;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            top: 0;
+            left: 0;
+
+        }
+
+        #indhold{
+            box-sizing: border-box; background-color: rgba(142, 134, 144, 0.1);
+            width: 90vw; height: 90vh; margin: auto;
+            text-align: center;
+        }
+
+        #luk{box-sizing: border-box; text-align: right; padding-right: 1em;}
+        #luk botton{font-size:2em;}
+        #indhold img{height: 300px;}
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="singleview">
+    <div id="luk"><button>╳</button></div>
+    <div id="indhold"></div>
+</div>
+
+
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let github = urlParams.get("github");
+        console.log(github);
+        let personer = [];
+        let person;
+
+        document.addEventListener("DOMContentLoaded", start);
+        function start() {
+            let dest = document.querySelector("#liste");
+            async function getJson() {
+                let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+                personer = await jsonData.json();
+                personer.forEach(obj =>{
+                    if(obj.github==github){
+                    person=obj;
+                }
+                })
+
+               console.log(person)
+                åbn();
+            }
+
+
+                   function åbn(){
+//                    document.querySelector("#indhold").innerHTML= `
+//                    <article class="person">
+//                       <h2>${person.navn}</h2>
+//                       <img class="billede" src="${person.billede}" alt="${person.navn}">
+//                       <p>Hold: ${person.hold}, Alder:${person.alder} </p>
+//                       <h3>${person.navn}´s historie</h3>
+//                       <p>${person.historie} </p>
+//
+//                    </article>
+//                     `;
+//
+//                    document.querySelector("#singleview").style.display="block"
+//
+//
+//
+//                        }//function åbn slut
+//
+//                    }
+//                })
+//            } //function visPersoner slut
+//
+//
+//
+//            document.querySelectorAll(".filter").forEach(elm => {
+//                elm.addEventListener("click", filtrering);
+//            })
+//
+//            function filtrering() {
+//                filter = this.getAttribute("data-hold");
+//                document.querySelector("h1").textContent = this.textContent;
+//                document.querySelectorAll(".filter").forEach(elm => {
+//                    elm.classList.remove("valgt");
+//                })
+//                this.classList.add("valgt");
+//                visPersoner();
+            }
+
+            getJson();
+        }
+
+    </script>
+
+<footer>
+</footer>
+
+</body>
+
+</html>
