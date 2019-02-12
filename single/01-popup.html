@@ -12,15 +12,7 @@
             font-family: arial;
         }
 
-         h2 {
-            font-family: arial;
-        }
-
-        p {
-            font-family: arial;
-        }
-
-        .retter {
+        .person {
             height: 40vw;
             width: 30vw;
             border: 2px solid rgba(10, 9, 9, 0);
@@ -33,6 +25,8 @@
         .menu {
             text-align: center;
             margin: 20px;
+
+
         }
 
 
@@ -49,29 +43,35 @@
 
         img {
             height: 20vw;
+
         }
 
 
+        #popup{
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            background-color: red;
+        }
 
     </style>
-</head>
 
+</head>
 
 <body>
 
+<div id="popup"></div>
 
  <header>
-     <h1>Alle retter</h1>
-       <nav class="menu">
-          <button class="filter valgt" data-kategori="alle">Alle retter</button>
-          <button class="filter" data-kategori="forretter">Forretter</button>
-          <button class="filter" data-kategori="hovedretter">Hovedretter</button>
-          <button class="filter" data-kategori="desserter">Desserter</button>
-          <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
-          <button class="filter" data-kategori="sideorders">Sideorders</button>
-      </nav>
-</header>
 
+     <h1>Alle</h1>
+       <nav class="menu">
+          <button class="filter valgt" data-hold="alle">Alle</button>
+          <button class="filter" data-hold="a">Hold A</button>
+          <button class="filter" data-hold="b">Hold B</button>
+      </nav>
+
+</header>
 
 
 <main>
@@ -81,7 +81,7 @@
 
 
     <script>
-        let retter = [];
+        let personer = [];
         let filter = "alle";
 
         document.addEventListener("DOMContentLoaded", start);
@@ -90,26 +90,26 @@
             let dest = document.querySelector("#liste");
             let temp = document.querySelector("template");
             async function getJson() {
-                let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
-                retter = await jsonData.json();
-                visRetter();
+                let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+                personer = await jsonData.json();
+                personer.sort((a, b) => {return a.navn.localeCompare(b.navn)});
+                visPersoner();
             }
 
-            function visRetter() {
+            function visPersoner() {
+                //  alert("Her er listen over personer på MMD")
                 dest.innerHTML = "";
-                retter.forEach(ret => {
-                    if (filter == "alle" || filter == ret.kategori) {
+                personer.forEach(person => {
+                    if (filter == "alle" || filter == person.hold) {
                         dest.innerHTML += `
-                <article class="ret">
-                  <h2>${ret.navn} </h2>
-                     <p>Id: ${ret.id}</p>
-                     <img src = "imgs/small/${ret.billede}-sm.jpg">
-                       <p>Kategori: ${ret.kategori}</p>
-                    <p>Navn: ${ret.navn}</p>
-                <p>Pris: ${ret.pris} kr</p>
-                <p>Kort: ${ret.kort}</p>
-                <p>Lang: ${ret.lang}</p>
-               <p>Oprindelse: ${ret.oprindelse}</p>
+                <article class="person">
+                  <h2>${person.navn} </h2>
+                     <p>Github: ${person.github}</p>
+                     <img src = "${person.billede}">
+                       <p>Email: ${person.email}</p>
+                    <p>Alder: ${person.alder}</p>
+                <p>Køn: ${person.køn}</p>
+              <p>Hold: ${person.hold}</p>
            </article>`;
 
                     }
@@ -122,13 +122,13 @@
             })
 
             function filtrering() {
-                filter = this.getAttribute("data-kategori");
+                filter = this.getAttribute("data-hold");
                 document.querySelector("h1").textContent = this.textContent;
                 document.querySelectorAll(".filter").forEach(elm => {
                     elm.classList.remove("valgt");
                 })
                 this.classList.add("valgt");
-                visRetter();
+                visPersoner();
             }
 
             getJson();
