@@ -55,7 +55,7 @@
             width: 100vw;
             height: 100vh;
             position: fixed;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.77);
             top: 0;
             left: 0;
             display: none;
@@ -63,13 +63,13 @@
         }
 
         #indhold{
-            box-sizing: border-box; background-color: rgba(142, 134, 144, 0.1);
-            width: 90vw; height: 90vh; margin: auto;
+            box-sizing: border-box; background-color: rgba(235, 235, 235, 0.94);
+            width: 80vw; height: 87vh; margin: auto;
             text-align: center;
         }
 
        #luk{box-sizing: border-box; text-align: right; padding-right: 1em;}
-        #luk button{font-size:2em; border: none; padding-right: 15px;}
+        #luk button{font-size:2em; border: none; padding-right: 50px; padding-top: 10px;}
 
 
 
@@ -127,13 +127,11 @@
                         let template = `
                 <article class="ret">
                   <h2>${ret.navn} </h2>
-                     <p>Id: ${ret.id}</p>
                      <img src = "imgs/small/${ret.billede}-sm.jpg">
                        <p>Kategori: ${ret.kategori}</p>
-                    <p>Navn: ${ret.navn}</p>
                 <p>Pris: ${ret.pris} kr</p>
                 <p>Kort: ${ret.kort}</p>
-                <p>Lang: ${ret.lang}</p>
+
                <p>Oprindelse: ${ret.oprindelse}</p>
            </article>
             `;
@@ -150,7 +148,6 @@
                        <p>Kategori: ${ret.kategori}</p>
                     <p>Navn: ${ret.navn}</p>
                      <p>Pris: ${ret.pris} kr</p>
-                   <p>Kort: ${ret.kort}</p>
                   <p>Lang: ${ret.lang}</p>
                     <p>Oprindelse: ${ret.oprindelse}</p>
                     </article>
