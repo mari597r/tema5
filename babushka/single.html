@@ -4,9 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>json-øvelse</title>
+    <title>Babushka</title>
 
     <style>
+
+ h1 {
+            text-align: center;
+            font-family: arial;
+        }
+
+         h2 {
+            font-family: arial;
+        }
+
+        p {
+            font-family: arial;
+        }
 
         #singleview{
             box-sizing: border-box;
@@ -20,7 +33,7 @@
 
         #indhold{
             box-sizing: border-box; background-color: rgba(142, 134, 144, 0.1);
-            width: 90vw; height: 90vh; margin: auto;
+            width: 90vw; height: 85vh; margin: auto;
             text-align: center;
         }
 
@@ -72,7 +85,7 @@
                        <p>Kategori: ${ret.kategori}</p>
                     <p>Pris: ${ret.pris} kr</p>
 
-                    <p>Lang: ${ret.lang}</p>
+                    <p>${ret.lang}</p>
                     <p>Oprindelse: ${ret.oprindelse}</p>
                     </article>
                     `;
